@@ -36,13 +36,13 @@ $(function () {
         e.preventDefault()
         $.post('/api/reguser',
             {
-                username: '$(#form_reg[name=username]).val()',
-                password: '$(#form_reg[name=password]).val()'
+                username: $('#form_reg[name=username]').val(),
+                password: $('#form_reg[name=password]').val()
             },
             function (fn) {
                 if (fn.status !== 0) {
                     console.log(fn.status);
-                    console.log(fn.password);
+                    console.log(fn.username);
                     return layer.msg(fn.message);
                 }
                 layer.msg('注册成功，请登录')
@@ -72,6 +72,7 @@ $(function () {
                 localStorage.setItem('token', fn.token)
                 //跳转到后台页面
                 location.href = '/index.html'
+                // console.log(fn.token);
             }
         })
     })
